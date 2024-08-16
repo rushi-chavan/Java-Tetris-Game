@@ -27,6 +27,7 @@ public class Board extends JPanel {
     private JLabel statusbar;
     private Shape curPiece;
     private Tetrominoe[] board;
+    private Integer[] bonus = {0, 0, 1, 2, 5};
 
     public Board(Tetris parent) {
 
@@ -245,10 +246,12 @@ public class Board extends JPanel {
         }
 
         if (numFullLines > 0) {
-
-            numLinesRemoved += numFullLines;
-
-            statusbar.setText(String.valueOf(numLinesRemoved));
+        	
+            numLinesRemoved += numFullLines + bonus[numFullLines];
+            
+            String bonusText = ((bonus[numFullLines] > 0) ? " (bonus +" + bonus[numFullLines] + ")" : "");
+            
+            statusbar.setText(String.valueOf(numLinesRemoved + bonusText));
             isFallingFinished = true;
             curPiece.setShape(Tetrominoe.NoShape);
         }
@@ -259,7 +262,8 @@ public class Board extends JPanel {
         Color colors[] = {new Color(0, 0, 0), new Color(204, 102, 102),
                 new Color(102, 204, 102), new Color(102, 102, 204),
                 new Color(204, 204, 102), new Color(204, 102, 204),
-                new Color(102, 204, 204), new Color(218, 170, 0)
+                new Color(102, 204, 204), new Color(218, 170, 0),
+                new Color(150, 170, 220)
         };
 
         var color = colors[shape.ordinal()];

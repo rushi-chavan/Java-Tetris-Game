@@ -5,7 +5,7 @@ import java.util.Random;
 public class Shape {
 
     protected enum Tetrominoe { NoShape, ZShape, SShape, LineShape,
-        TShape, SquareShape, LShape, MirroredLShape }
+        TShape, SquareShape, LShape, MirroredLShape, HatShape }
 
     private Tetrominoe pieceShape;
     private int coords[][];
@@ -22,14 +22,15 @@ public class Shape {
         coords = new int[4][2];
 
         coordsTable = new int[][][] {
-                { { 0, 0 },   { 0, 0 },   { 0, 0 },   { 0, 0 } },
-                { { 0, -1 },  { 0, 0 },   { -1, 0 },  { -1, 1 } },
-                { { 0, -1 },  { 0, 0 },   { 1, 0 },   { 1, 1 } },
-                { { 0, -1 },  { 0, 0 },   { 0, 1 },   { 0, 2 } },
-                { { -1, 0 },  { 0, 0 },   { 1, 0 },   { 0, 1 } },
-                { { 0, 0 },   { 1, 0 },   { 0, 1 },   { 1, 1 } },
-                { { -1, -1 }, { 0, -1 },  { 0, 0 },   { 0, 1 } },
-                { { 1, -1 },  { 0, -1 },  { 0, 0 },   { 0, 1 } }
+        	{ { 0, 0 },   { 0, 0 },   { 0, 0 },   { 0, 0 } },
+            { { 0, -1 },  { 0, 0 },   { -1, 0 },  { -1, 1 } },
+            { { 0, -1 },  { 0, 0 },   { 1, 0 },   { 1, 1 } },
+            { { 0, -1 },  { 0, 0 },   { 0, 1 },   { 0, 2 } },
+            { { -1, 0 },  { 0, 0 },   { 1, 0 },   { 0, 1 } },
+            { { 0, 0 },   { 1, 0 },   { 0, 1 },   { 1, 1 } },
+            { { -1, -1 }, { 0, -1 },  { 0, 0 },   { 0, 1 } },
+            { { 1, -1 },  { 0, -1 },  { 0, 0 },   { 0, 1 } },
+            { { 0, 0 },  { 0, 0 },  { 1, -1 },   { 2, 0 } }
         };
 
         setShape(Tetrominoe.NoShape);
@@ -57,7 +58,7 @@ public class Shape {
     public void setRandomShape() {
 
         var r = new Random();
-        int x = Math.abs(r.nextInt()) % 7 + 1;
+        int x = Math.abs(r.nextInt()) % 8 + 1;
 
         Tetrominoe[] values = Tetrominoe.values();
         setShape(values[x]);
